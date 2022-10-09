@@ -1,4 +1,6 @@
-#
+# OpenBiblio German Docker Images
+
+Docker images for [OpenBiblio-de](https://openbiblio.de/). Published on [DockerHub](https://hub.docker.com/r/mdreier3/openbiblio-de).
 
 ## Runtime configuration
 
@@ -10,7 +12,6 @@
 | OBIB_PWD             | yes       | Database password                                                                            |
 | MAIN_LOCALE          | no        | Default locale, `en` or `de` (default)                                                       |
 | OBIB_CHARSET         | no        | Used [charset](https://www.php.net/manual/de/function.htmlspecialchars.php), default `utf-8` |
-| 
 
 # Build configuration
 
