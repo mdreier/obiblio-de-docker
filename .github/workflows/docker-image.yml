@@ -28,7 +28,7 @@ jobs:
           context: .
           file: Dockerfile.installer
           push: true
-          tags: mdreier3/openbiblio-de:installer-latest,mdreier3/openbiblio-de:installer-0.7.3,mdreier3/openbiblio-de:installer-{{ $GITHUB_SHA }}
+          tags: mdreier3/openbiblio-de:installer-latest,mdreier3/openbiblio-de:installer-0.7.3,mdreier3/openbiblio-de:installer-${{ github.sha }}
   
   build-runtime:
 
@@ -50,5 +50,5 @@ jobs:
           context: .
           file: Dockerfile.installer
           push: true
-          tags: mdreier3/openbiblio-de:latest,mdreier3/openbiblio-de:0.7.3,mdreier3/openbiblio-de:{{ $GITHUB_SHA }}
+          tags: mdreier3/openbiblio-de:latest,mdreier3/openbiblio-de:0.7.3,mdreier3/openbiblio-de:${{ github.sha }}
   
