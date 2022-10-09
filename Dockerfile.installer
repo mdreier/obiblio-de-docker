@@ -1,0 +1,24 @@
+FROM php:7.4.32-apache
+
+ARG PHP_CONFIG=production
+ARG installer=no
+
+# Install zip/unzip to extract archive
+RUN apt update && apt install -y zip && apt clean
+
+# Install required PHP extensions
+RUN docker-php-ext-install mysqli
+
+# Configure PHP
+RUN mv $PHP_INI_DIR/php.ini-$PHP_CONFIG $PHP_INI_DIR/php.ini
+
+# Download and extract openbiblio
+RUN curl -o /var/www/openbiblio.zip https://openbiblio.de/files/openbiblio0.7.3-g.zip && \
+  unzip -d /var/www /var/www/openbiblio.zip && rmdir /var/www/html && mv /var/www/obiblio /var/www/html
+
+# Copy adapted database configuration
+COPY database_constants.php /var/www/html
+
+# Patch charset warning
+COPY constants.php /var/www/html/shared
+RUN sed -i 's/<?php/<?php require_once("constants.php");/' /var/www/html/shared/common.php
