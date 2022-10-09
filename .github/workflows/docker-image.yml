@@ -33,6 +33,9 @@ jobs:
   build-runtime:
 
     runs-on: ubuntu-latest
+    
+    # Must be run after the installer image has been created and published
+    needs: build-installer
 
     steps:
       - name: Check out the repo
@@ -48,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: Dockerfile.installer
+          file: Dockerfile
           push: true
           tags: mdreier3/openbiblio-de:latest,mdreier3/openbiblio-de:0.7.3,mdreier3/openbiblio-de:${{ github.sha }}
   
